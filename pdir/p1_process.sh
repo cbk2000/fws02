@@ -26,3 +26,4 @@ awk -F',' -v col="$col" '{print $col}' $INPUT_FILE_CLEAN > $OUTPUT_FILE
 echo "Done Writing. Deleting first line."
 sed -i '1d' $OUTPUT_FILE
 echo "Done. Byebye. ☄️"
+exit 0

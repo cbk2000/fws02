@@ -98,5 +98,5 @@ $line"
     answer=""
   fi
 done < "$input_path"
-echo "Done."
+echo "Done. Byebye. ☄️"
 exit 0

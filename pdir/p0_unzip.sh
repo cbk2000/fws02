@@ -19,3 +19,4 @@ if [ ! -d "$OUTPUT_DIR" ]; then
 fi
 
 unzip "$INPUT_FILE" -d $OUTPUT_DIR
+exit 0
