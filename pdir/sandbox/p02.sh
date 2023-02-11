@@ -8,7 +8,7 @@ input_dir="./input"
 input_file="i02.txt"
 input_path="$input_dir/$input_file"
 output_dir="./output"
-output_file="o2.txt"
+output_file="o02.txt"
 output_path="$output_dir/$output_file"
 
 # Check if input directory and file exist
