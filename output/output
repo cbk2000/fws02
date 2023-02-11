@@ -1,0 +1,42 @@
+# ############# XXXXX
+ZCZC XYZ231-QUIZ:W00:Q01
+IMG:image1.gif:128x128
+Jakarta ibukota Indonesia.
+---
+A. true
+B. false
+ANSWER: A
+
+# ############# XXXXX
+ZCZC XYZ231-QUIZ:W00:Q01
+IMG:image1.gif:128x128
+Bandung ibukota Indonesia.
+---
+A. true
+B. false
+ANSWER: B
+
+# ############# XXXXX
+ZCZC XYZ231-QUIZ:W00:Q01
+Depok ibukota Indonesia.
+---
+A. true
+B. false
+ANSWER: B
+
+# ############# XXXXX
+ZCZC XYZ231-QUIZ:W00:Q02
+Tokyo ibukota Jepang.
+---
+A. true
+B. false
+ANSWER: A
+
+# ############# XXXXX
+ZCZC XYZ231-QUIZ:W00:Q02
+Osaka ibukata Jepang.
+---
+A. true
+B. false
+ANSWER: B
+

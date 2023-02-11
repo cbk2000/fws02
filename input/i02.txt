@@ -1,0 +1,20 @@
+ZCZC XYZ231-QUIZ:W00:Q01
+
+T:
+IMG:image1.gif:128x128
+Jakarta ibukota Indonesia.
+
+F:
+IMG:image2.gif:128x128
+Bandung ibukota Indonesia.
+
+F:
+Depok ibukota Indonesia.
+
+ZCZC XYZ231-QUIZ:W00:Q02
+
+T:
+Tokyo ibukota Jepang.
+
+F:
+Osaka ibukata Jepang.
