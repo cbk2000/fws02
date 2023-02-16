@@ -1,29 +1,28 @@
 #!/bin/bash
-INPUT_DIR=../input
-OUTPUT_DIR=../output
 
-INPUT_FILE="${OUTPUT_DIR}/OS231 REGISTRATION.csv"
-INPUT_FILE_CLEAN="${OUTPUT_DIR}/OS231_REGISTRATION.csv"
-mv "$INPUT_FILE" "$INPUT_FILE_CLEAN"
+source fs_chk.sh
+source remove_dir.sh
 
+pdir=$(cd "$(dirname "$0")"; pwd)
+cd "$pdir"
 
-OUTPUT_FILE_NAME='OS231_GH.txt'
-OUTPUT_FILE="${OUTPUT_DIR}/${OUTPUT_FILE_NAME}"
-YES=y
-
-if test -f "$OUTPUT_FILE"; then
-    read -p 'Output file exists. Delete and start anew? {y/N}: ' DELETE_FLAG
-    # if [${DELETE_FLAG,,} = ${YES,,}]; then
-    #     echo "Deleting..."
-    # fi
-    echo $DELETE_FLAG | grep -qi '[yY]' && rm $OUTPUT_FILE || echo "not deleting"
-fi
+INPUT_DIR="$pdir/temp"
+INPUT_FILE="DUMMY-REGISTRATION.csv"
+INPUT_PATH="$INPUT_DIR/$INPUT_FILE"
+OUTPUT_DIR="$pdir/output"
+OUTPUT_FILE="o2.txt"
+OUTPUT_PATH="$OUTPUT_DIR/$OUTPUT_FILE"
+GH_COL=5
 
 
-col=5
-awk -F',' -v col="$col" '{print $col}' $INPUT_FILE_CLEAN > $OUTPUT_FILE
+check_filesystem "$INPUT_DIR" "$INPUT_PATH" "$OUTPUT_DIR" "$OUTPUT_PATH"
+
+awk -F',' -v col="$GH_COL" '{print $GH_COL}' $INPUT_PATH > $OUTPUT_PATH
 
 echo "Done Writing. Deleting first line."
-sed -i '1d' $OUTPUT_FILE
+sed -i '1d' $OUTPUT_PATH
+echo "Cleaning temporary .csv file."
+rm $INPUT_PATH
+remove_empty_directory $OUTPUT_DIR
 echo "Done. Byebye. ☄️"
 exit 0

@@ -1,22 +1,19 @@
 #!/bin/bash
-INPUT_DIR=../input
-OUTPUT_DIR=../output
 
+source fs_chk.sh
+source unzip.sh
 
-if [ ! -d "$INPUT_DIR" ]; then
-  echo "Error: $INPUT_DIR directory does not exist."
-  exit 1
-fi
+pdir=$(cd "$(dirname "$0")"; pwd)
+cd "$pdir"
 
-INPUT_FILE="${INPUT_DIR}/OS231 REGISTRATION.csv.zip"
+# Define directories and filenames
+INPUT_DIR="$pdir/input"
+INPUT_FILE="DUMMY-REGISTRATION.csv.zip"
+INPUT_PATH="$INPUT_DIR/$INPUT_FILE"
+OUTPUT_DIR="$pdir/temp"
 
-echo $INPUT_FILE
+check_filesystem "$INPUT_DIR" "$INPUT_PATH" "$OUTPUT_DIR"
 
-if [ ! -d "$OUTPUT_DIR" ]; then
-  echo "Error: $OUTPUT_DIR directory does not exist. Creating now."
-  mkdir $OUTPUT_DIR
-  
-fi
+extract_archive "$INPUT_PATH" "$OUTPUT_DIR"
 
-unzip "$INPUT_FILE" -d $OUTPUT_DIR
 exit 0

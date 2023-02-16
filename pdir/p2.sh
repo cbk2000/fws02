@@ -1,44 +1,19 @@
 #!/bin/bash
 
+source fs_chk.sh
+
 pdir=$(cd "$(dirname "$0")"; pwd)
-cd "$pdir/.."
+cd "$pdir"
 
 # Define directories and filenames
-input_dir="./input"
-input_file="i02.txt"
-input_path="$input_dir/$input_file"
-output_dir="./output"
-output_file="o2.txt"
-output_path="$output_dir/$output_file"
+INPUT_DIR="$pdir/input"
+INPUT_FILE="i02.txt"
+INPUT_PATH="$INPUT_DIR/$INPUT_FILE"
+OUTPUT_DIR="$pdir/output"
+OUTPUT_FILE="o2.txt"
+OUTPUT_PATH="$OUTPUT_DIR/$OUTPUT_FILE"
 
-#FS Checks
-if [ ! -d "$input_dir" ]; then
-echo "Error: input directory does not exist."
-exit 1
-fi
-
-if [ ! -f "$input_path" ]; then
-echo "Error: input file does not exist."
-exit 1
-fi
-
-if [ ! -d "$output_dir" ]; then
-echo "Output directory does not exist, creating it now..."
-mkdir "$output_dir"
-fi
-
-if [ -f "$output_path" ]; then
-echo "Output file already exists."
-read -p "Do you want to (o)verwrite, (a)ppend or (q)uit? " choice
-
-case $choice in
-o) rm "$output_path";;
-a) :;;
-q) exit 1;;
-*) echo "Invalid option, quitting."; exit;;
-esac
-fi
-
+check_filesystem "$INPUT_DIR" "$INPUT_PATH" "$OUTPUT_DIR" "$OUTPUT_PATH"
 
 # Initialize section header
 section_header=""
@@ -49,7 +24,7 @@ question_contents=""
 # Initialize answer
 answer=""
 
-last_line=$(wc -l < $input_path)
+last_line=$(wc -l < $INPUT_PATH)
 current_line=0
 
 # Read input file line by line
@@ -78,25 +53,22 @@ do
 $line"
   fi
 
-  # echo "current question contents are ${question_contents}"
-
-
   # If line is empty, write formatted output to output file
   if [[ -z "$line" || $current_line == $last_line ]] && [[ "$answer" == "A" || "$answer" == "B" ]]; then
 
-    echo "# ############# XXXXX" >> $output_path
-    echo "$section_header" >> $output_path
-    echo "$question_contents" >> $output_path
-    echo "---" >> $output_path
-    echo "A. true" >> $output_path
-    echo "B. false" >> $output_path
-    echo "ANSWER: $answer" >> $output_path
-    echo "" >> $output_path
+    echo "# ############# XXXXX" >> $OUTPUT_PATH
+    echo "$section_header" |  tr -d '\n' >> $OUTPUT_PATH
+    echo "$question_contents" >> $OUTPUT_PATH
+    echo "---" >> $OUTPUT_PATH
+    echo "A. true" >> $OUTPUT_PATH
+    echo "B. false" >> $OUTPUT_PATH
+    echo "ANSWER: $answer" >> $OUTPUT_PATH
+    echo "" >> $OUTPUT_PATH
 
     # Reset question contents and answer
     question_contents=""
     answer=""
   fi
-done < "$input_path"
+done < "$INPUT_PATH"
 echo "Done. Byebye. ☄️"
 exit 0
